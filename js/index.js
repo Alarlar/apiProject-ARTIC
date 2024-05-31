@@ -1,33 +1,48 @@
-const apiUrl = "https://api.artic.edu/api/v1/artworks";
+document.addEventListener('DOMContentLoaded', () => {
+  const collectionApiUrl = "https://api.artic.edu/api/v1/artworks";
+  const artworkApiUrl = "https://api.artic.edu/api/v1/artworks/129884";
+  const collectionList = document.getElementById('collectionList');
+  const artworkDetails = document.getElementById('artworkDetails');
 
-let repositories = [];
-fetch(apiUrl)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Couldn't fetch data from ARTIC API");
-    }
-    return response.json();
-  })
+  // Fetch collection data
+  fetch(collectionApiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Couldn't fetch data from ARTIC API");
+      }
+      return response.json();
+    })
+    .then(data => {
+      const artworks = data.data;
+      artworks.forEach(artwork => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${artwork.title} by ${artwork.artist_display}`;
+        collectionList.appendChild(listItem);
+      });
+    })
+    .catch(error => {
+      console.error("Something went wrong with the collection API:", error);
+    });
 
-  .then((data) => {
-    console.log( data.data[0].artist_display);
-    repositories = data;
-    console.log(repositories);
-    const projectSection = document.getElementById("Collection");
-
-    const projectList = projectSection.querySelector("ul");
-  })
-
-  .catch((error) => {
-    console.error("Something went wrong:", error);
-  });
-
-const projectList = document.getElementById("projectList");
-
-// Loop through the repositories and create list items
-repositories.forEach((repo) => {
-  const listItem = document.createElement("li");
-  listItem.textContent = repo.data[0].artist_display; // Display the repository name
-  projectList.appendChild(listItem);
-  console.log(listItem);
+  // Fetch single artwork data
+  fetch(artworkApiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Couldn't fetch data from ARTIC API");
+      }
+      return response.json();
+    })
+    .then(data => {
+      const artwork = data.data;
+      const artworkHtml = `
+        <h3>${artwork.title}</h3>
+        <p>By ${artwork.artist_display}</p>
+        <p>Date: ${artwork.date_display}</p>
+        <img src="${artwork.image_id ? `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` : ''}" alt="${artwork.title}">
+      `;
+      artworkDetails.innerHTML = artworkHtml;
+    })
+    .catch(error => {
+      console.error("Something went wrong with the artwork API:", error);
+    });
 });

@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Open api project</title>
+    <title>Open API Project</title>
     <meta charset="utf-8">
-    <meta name="description" content="Dinar Ibragimov, Open api project Art Institute of Chicago API">
-    <link rel="stylesheet" href="CSS/index.css">
+    <meta name="description" content="Dinar Ibragimov, Open API project Art Institute of Chicago API">
+    <link rel="stylesheet" href="css/index.css">
 </head>
-
 <body>
+    <nav>
+        <a href="#About">About</a>
+        <a href="#Collection">Collection</a>
+        <a href="#Artwork">Artwork</a>
+        <a href="#Connect">The Impressionist Collection</a>
+    </nav>
 
-    <body>
-        <nav>
-            <a href="#About">About</a>
-            <a href="https://api.artic.edu/api/v1/artworks">Collection</a>
-            <a href="#Connect">The Impressionist Collection</a>
-        </nav>
+    <h1 id="name">Art in Chicago</h1>
+    <section id="About">
+        <h2>About</h2>
+        <p>Must see Art in Chicago</p>
+    </section>
 
-        <h1 id="name">Art in Chicago</h1>
-        <section id="About">
-            <h2>About</h2>
-            <p>Must see Art in Chicago</p>
-        </section>
+    <section id="Collection">
+        <h2>Collection</h2>
+        <ul id="collectionList">
+            <!-- Collection list will be populated here -->
+        </ul>
+    </section>
 
-        <section id="Collection">
-            <h2>Collection</h2>
-            <ul>
-                <!-- Collection list -->
-            </ul>
-        </section>
+    <section id="Artwork">
+        <h2>Featured Artwork</h2>
+        <div id="artworkDetails">
+            <!-- Artwork details will be populated here -->
+        </div>
+    </section>
 
-        <section id="Connect">
-            <h3>Connect</h3>
-            <ul class="connect-list">
-                <li><a href="mailto:dinar.ibragim@proton.me">e-mail </a></li>
-                <li><a href="https://github.com/Alarlar">github</a></li>
-            </ul>
-        </section>
-        </section>
+    <section id="Connect">
+        <h3>Connect</h3>
+        <ul class="connect-list">
+            <li><a href="mailto:dinar.ibragim@proton.me">e-mail</a></li>
+            <li><a href="https://github.com/Alarlar">github</a></li>
+        </ul>
+    </section>
 
-        <script src="js/index.js"></script>
-    </body>
-
+    <script src="js/index.js"></script>
+</body>
 </html>
